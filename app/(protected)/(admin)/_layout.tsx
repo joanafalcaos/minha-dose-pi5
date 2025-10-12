@@ -16,28 +16,7 @@ export default function AdminLayout() {
                 backgroundColor: '#FAFAFA'
             }
         }}>
-            <Tabs.Screen
-                name="homeAdmin"
-                options={{
-                    title: 'Home',
-                    headerShown: false,
-                    tabBarIcon: ({ color, size }) => <Entypo name="home" size={size} color={color} />,
-                }}
-            />
-            <Tabs.Screen
-                name="registerVaccin"
-                options={{
-                    title: 'Cadastro',
-                    tabBarIcon: ({ color, size }) => <FontAwesome6 name="app-registration" size={size} color={color} />
-                }}
-            />
-            <Tabs.Screen
-                name="vaccinsList"
-                options={{
-                    title: 'Vacinas',
-                    tabBarIcon: ({ color, size }) => <MaterialIcons name="vaccines" size={size} color={color} />
-                }}
-            />
+           
             <Tabs.Screen
                 name="profile"
                 options={{

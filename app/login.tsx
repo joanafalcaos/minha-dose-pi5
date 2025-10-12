@@ -70,7 +70,7 @@ async function handleVerifyEmail() {
 
         // Redireciona conforme o role
         if (fullUserData.role === "admin") {
-          router.replace("/(protected)/(admin)/homeAdmin");
+          router.replace("/(protected)/(admin)/profile");
         } else {
           router.replace("/(protected)/(tabs)/home");
         }
