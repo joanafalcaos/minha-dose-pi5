@@ -31,6 +31,8 @@ async function handleVerifyEmail() {
     const response = await api.get(`api/v1/users/email?email=${encodeURIComponent(email)}`);
     const userData: User = response.data;
 
+    console.log("API response userData:", userData);
+
     if (userData) {
       setUserFound(userData);
       setVerifiedEmail(true);
@@ -58,19 +60,27 @@ async function handleVerifyEmail() {
     }
 
     if (userFound.password === senha) {
-  const { password, ...userWithoutPassword } = userFound;
-  setUser(userWithoutPassword);
+      try {
+        // Busca dados completos do usuário incluindo role
+        const response = await api.get(`api/v1/users/${userFound.id}`);
+        const fullUserData = response.data;
 
-  // Redireciona conforme o role
-  if (userFound.role === "admin") {
-    router.replace("/(protected)/(admin)/homeAdmin");
-  } else {
-    router.replace("/(protected)/(tabs)/home");
-  }
-} else {
-  setError("Senha incorreta.");
-}
+        const { password, ...userWithoutPassword } = fullUserData;
+        setUser(userWithoutPassword);
 
+        // Redireciona conforme o role
+        if (fullUserData.role === "admin") {
+          router.replace("/(protected)/(admin)/homeAdmin");
+        } else {
+          router.replace("/(protected)/(tabs)/home");
+        }
+      } catch (e) {
+        console.error('Erro ao buscar dados do usuário:', e);
+        setError('Erro ao fazer login. Tente novamente.');
+      }
+    } else {
+      setError("Senha incorreta.");
+    }
   }
 
   return (
