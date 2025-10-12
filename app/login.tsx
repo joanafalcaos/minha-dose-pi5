@@ -10,6 +10,7 @@ type User = {
   id: number;
   email: string;
   password: string;
+  role: 'user' | 'admin';
 };
 
 export default function LoginScreen() {
@@ -57,12 +58,19 @@ async function handleVerifyEmail() {
     }
 
     if (userFound.password === senha) {
-      const { password, ...userWithoutPassword } = userFound;
-      setUser(userWithoutPassword);
-      router.push('/home');
-    } else {
-      setError('Senha incorreta.');
-    }
+  const { password, ...userWithoutPassword } = userFound;
+  setUser(userWithoutPassword);
+
+  // Redireciona conforme o role
+  if (userFound.role === "admin") {
+    router.replace("/(protected)/(admin)/profile");
+  } else {
+    router.replace("/(protected)/(tabs)/home");
+  }
+} else {
+  setError("Senha incorreta.");
+}
+
   }
 
   return (
