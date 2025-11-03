@@ -31,7 +31,7 @@ export default function ResetPasswordNewScreen() {
       return;
     }
 
-    // ⚠️ Simulação de sucesso (sem API)
+    // Simulação de sucesso
     setLoading(true);
     setTimeout(() => {
       setLoading(false);

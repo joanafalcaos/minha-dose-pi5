@@ -15,7 +15,7 @@ export default function ResetPasswordCodeScreen() {
       return;
     }
 
-    // 👉 Simulação de verificação de código
+    // Simulação de verificação de código
     Alert.alert('Simulação', 'Código verificado com sucesso!');
 
     router.push({

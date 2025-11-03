@@ -14,7 +14,6 @@ export default function ResetPasswordEmailScreen() {
       return;
     }
 
-    // 👉 Aqui, em vez de chamar a API, apenas navega para a próxima tela
     Alert.alert('Simulação', 'Um código seria enviado para o seu e-mail.');
 
     router.push({
